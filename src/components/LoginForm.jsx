@@ -14,7 +14,46 @@ import {
   createTheme,
   CssBaseline,
 } from "@mui/material";
-import { Visibility, VisibilityOff, Person, Lock } from "@mui/icons-material";
+import {
+  Visibility,
+  VisibilityOff,
+  Person,
+  Lock,
+  Brightness4,
+  Brightness7,
+} from "@mui/icons-material";
+
+const lightTheme = createTheme({
+  palette: {
+    mode: "light",
+    primary: { main: "#1e88e5" },
+    secondary: { main: "#00acc1" },
+    background: {
+      default: "linear-gradient(to right,rgb(0, 207, 207), #ffffff)",
+      paper: "#ffffff",
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          textTransform: "none",
+          fontWeight: 600,
+          background:
+            "linear-gradient(135deg,rgb(0, 207, 207) 0%, #ffffff 100%)",
+          color: "#004d66",
+          "&:hover": {
+            background:
+              "linear-gradient(135deg,rgb(0, 207, 207) 20%, #ffffff 100%)",
+            transform: "translateY(-2px)",
+            boxShadow: "0 5px 15px rgba(0, 77, 102, 0.3)",
+          },
+        },
+      },
+    },
+  },
+});
 
 const darkTheme = createTheme({
   palette: {
@@ -22,7 +61,7 @@ const darkTheme = createTheme({
     primary: { main: "#00e5ff" },
     secondary: { main: "#004d66" },
     background: {
-      default: "#121212",
+      default: "linear-gradient(to right, #141e30, #004d66)",
       paper: "#1a1a1a",
     },
   },
@@ -50,9 +89,11 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const theme = isDarkMode ? darkTheme : lightTheme;
 
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
-  const isMobile = useMediaQuery(darkTheme.breakpoints.down("md"));
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -68,7 +109,7 @@ const LoginForm = () => {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container
         maxWidth={false}
@@ -78,7 +119,7 @@ const LoginForm = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #121212 0%, #004d66 100%)",
+          background: theme.palette.background.default,
         }}
       >
         <Paper
@@ -101,10 +142,24 @@ const LoginForm = () => {
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
+              position: "relative",
               padding: { xs: 3, md: 4 },
-              background: "rgba(18, 18, 18, 0.95)",
+              background: theme.palette.background.paper,
             }}
           >
+            {/* Theme Toggle Icon */}
+            <IconButton
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              sx={{
+                position: "absolute",
+                top: 8,
+                right: 8,
+              }}
+              color="inherit"
+            >
+              {isDarkMode ? <Brightness7 /> : <Brightness4 />}
+            </IconButton>
+
             <Typography
               variant="h4"
               sx={{
@@ -203,22 +258,10 @@ const LoginForm = () => {
               >
                 {isLoading ? "Logging in..." : "Log In"}
               </Button>
-
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  "& > *": {
-                    cursor: "pointer",
-                    transition: "color 0.2s",
-                    "&:hover": { color: "#00e5ff" },
-                  },
-                }}
-              ></Box>
             </Box>
           </Box>
 
-          {/* Image Box on the right */}
+          {/* Image Box */}
           {!isMobile && (
             <Box
               sx={{
