@@ -11,10 +11,7 @@ import {
 
 const MovieCard = ({ movie, onClick }) => {
   return (
-    <Card
-      onClick={() => onClick(movie)}
-      sx={{ cursor: "pointer", height: "100%" }}
-    >
+    <Card onClick={onClick} sx={{ cursor: "pointer", height: "100%" }}>
       <CardMedia
         component="img"
         image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -22,7 +19,7 @@ const MovieCard = ({ movie, onClick }) => {
         sx={{ height: 300 }}
       />
       <CardContent>
-        <Typography variant="h6" gutterBottom noWrap>
+        <Typography variant="h6" noWrap gutterBottom>
           {movie.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
