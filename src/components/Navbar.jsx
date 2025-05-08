@@ -24,9 +24,18 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
               <Menu />
             </IconButton>
           )}
-          <Typography variant="h6" noWrap>
-            Film Cube
-          </Typography>
+
+          {/* Logo and App Name */}
+          <Box display="flex" alignItems="center">
+            <img
+              src="/logo.png"
+              alt="Film Cube Logo"
+              style={{ maxWidth: 80 }}
+            />
+            <Typography variant="h6" noWrap>
+              Film Cube
+            </Typography>
+          </Box>
         </Box>
 
         {!isMobile && (
@@ -43,7 +52,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           >
             <Search sx={{ mr: 1, color: theme.palette.text.secondary }} />
             <InputBase
-              placeholder="Search movies…"
+              placeholder="I'm searching for..."
               fullWidth
               sx={{ color: theme.palette.text.primary }}
             />
