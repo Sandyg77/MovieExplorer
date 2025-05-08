@@ -15,7 +15,8 @@ const SearchBar = () => {
         px: 2,
         py: 0.5,
         borderRadius: 2,
-        minWidth: 300,
+        minWidth: { xs: "100%", sm: 300 },
+        maxWidth: 400,
       }}
     >
       <Search sx={{ mr: 1, color: theme.palette.text.secondary }} />

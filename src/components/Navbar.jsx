@@ -8,7 +8,7 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import { Menu, Brightness4, Brightness7 } from "@mui/icons-material";
+import { Menu, Brightness4, Brightness7, Favorite } from "@mui/icons-material";
 import SearchBar from "./SearchBar";
 
 const Navbar = ({ isDarkMode, toggleTheme }) => {
@@ -18,39 +18,73 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
   return (
     <AppBar
       position="fixed"
-      color="primary"
       elevation={4}
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
+        backgroundColor:
+          theme.palette.mode === "light"
+            ? "#004d66"
+            : theme.palette.background.paper,
+        px: 2,
       }}
     >
-      <Toolbar sx={{ justifyContent: "space-between" }}>
-        {/* Left Side: Logo & Menu */}
-        <Box display="flex" alignItems="center">
+      <Toolbar
+        disableGutters
+        sx={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          alignItems: isMobile ? "flex-start" : "center",
+          justifyContent: "space-between",
+          width: "100%",
+          gap: isMobile ? 1 : 0,
+          py: isMobile ? 1 : 0,
+        }}
+      >
+        {/* Left: Logo & Menu */}
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent={isMobile ? "center" : "flex-start"}
+          width={isMobile ? "100%" : "auto"}
+          gap={1}
+        >
           {isMobile && (
-            <IconButton edge="start" color="inherit" sx={{ mr: 1 }}>
+            <IconButton edge="start" color="inherit">
               <Menu />
             </IconButton>
           )}
-          <Box display="flex" alignItems="center" gap={1}>
-            <img
-              src="/logo.png"
-              alt="Film Cube Logo"
-              style={{ maxWidth: 65, height: "auto" }}
-            />
-            <Typography variant="h6" component="div" noWrap>
-              Film Cube
-            </Typography>
-          </Box>
+          <img
+            src="/logo.png"
+            alt="Film Cube Logo"
+            style={{ maxWidth: 50, height: "auto" }}
+          />
+          <Typography variant="h6" noWrap>
+            Film Cube
+          </Typography>
         </Box>
 
-        {/* Center: SearchBar (desktop only) */}
-        {!isMobile && <SearchBar />}
-
-        {/* Right Side: Theme Toggle */}
-        <IconButton color="inherit" onClick={toggleTheme}>
-          {isDarkMode ? <Brightness7 /> : <Brightness4 />}
-        </IconButton>
+        {/* Right: Search + Favorite + Theme */}
+        <Box
+          display="flex"
+          flexDirection={isMobile ? "column" : "row"}
+          alignItems="center"
+          justifyContent={isMobile ? "flex-start" : "flex-end"}
+          width={isMobile ? "100%" : "auto"}
+          mt={isMobile ? 1 : 0}
+          gap={1}
+        >
+          <Box sx={{ width: isMobile ? "100%" : 350 }}>
+            <SearchBar />
+          </Box>
+          <Box display="flex" gap={1}>
+            <IconButton color="inherit" aria-label="favourites">
+              <Favorite />
+            </IconButton>
+            <IconButton color="inherit" onClick={toggleTheme}>
+              {isDarkMode ? <Brightness7 /> : <Brightness4 />}
+            </IconButton>
+          </Box>
+        </Box>
       </Toolbar>
     </AppBar>
   );
