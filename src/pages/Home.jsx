@@ -12,7 +12,7 @@ import {
 import Layout from "../components/Layout";
 import Banner from "../components/Banner";
 import MovieCard from "../components/MovieCard";
-
+import Footer from "../components/Footer";
 const API_KEY = "YOUR_TMDB_API_KEY"; // Replace with TMDb key
 
 const Home = () => {
@@ -84,6 +84,7 @@ const Home = () => {
           )}
         </Box>
       </Container>
+      <Footer />
     </Layout>
   );
 };
