@@ -6,6 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./pages/Login";
+import Home from "./pages/Home";
 
 function App() {
   const isLoggedIn = localStorage.getItem("filmCubeUser");
@@ -18,6 +19,7 @@ function App() {
           element={<Navigate to={isLoggedIn ? "/home" : "/login"} />}
         />
         <Route path="/login" element={<Login />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </Router>
   );
