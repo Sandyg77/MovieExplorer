@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   TextField,
@@ -16,12 +16,11 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff, Person, Lock } from "@mui/icons-material";
 
-// Dark theme with
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: { main: "#00e5ff" },
-    secondary: { main: "#004d66" }, // Turquoise
+    secondary: { main: "#004d66" },
     background: {
       default: "#121212",
       paper: "#1a1a1a",
@@ -59,7 +58,6 @@ const LoginForm = () => {
     e.preventDefault();
     if (username && password) {
       setIsLoading(true);
-      // Simulate login process
       setTimeout(() => {
         localStorage.setItem("filmCubeUser", username);
         navigate("/home");
@@ -74,6 +72,7 @@ const LoginForm = () => {
       <CssBaseline />
       <Container
         maxWidth={false}
+        disableGutters
         sx={{
           height: "100vh",
           display: "flex",
@@ -117,7 +116,7 @@ const LoginForm = () => {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Welcome Back
+              Welcome Back!
             </Typography>
             <Typography
               variant="body1"
@@ -215,16 +214,24 @@ const LoginForm = () => {
                     "&:hover": { color: "#00e5ff" },
                   },
                 }}
-              >
-                <Typography variant="body2" color="text.secondary">
-                  Forgot Password?
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Create Account
-                </Typography>
-              </Box>
+              ></Box>
             </Box>
           </Box>
+
+          {/* Image Box on the right */}
+          {!isMobile && (
+            <Box
+              sx={{
+                flex: 1,
+                backgroundImage: "url('/login.jpg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                minHeight: "400px",
+              }}
+              aria-label="Login illustration"
+            />
+          )}
         </Paper>
       </Container>
     </ThemeProvider>
