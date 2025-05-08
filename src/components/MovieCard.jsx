@@ -7,9 +7,19 @@ import {
   Typography,
   Box,
   Rating,
+  IconButton,
 } from "@mui/material";
+import { Favorite } from "@mui/icons-material"; // Import Favorite icon
 
 const MovieCard = ({ movie, onClick }) => {
+  const addToFavorites = (movie) => {
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (!favorites.some((fav) => fav.id === movie.id)) {
+      favorites.push(movie);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+  };
+
   return (
     <Card onClick={onClick} sx={{ cursor: "pointer", height: "100%" }}>
       <CardMedia
@@ -34,6 +44,12 @@ const MovieCard = ({ movie, onClick }) => {
             size="small"
           />
         </Box>
+        <IconButton
+          sx={{ position: "absolute", top: 10, right: 10 }}
+          onClick={() => addToFavorites(movie)}
+        >
+          <Favorite color="primary" />
+        </IconButton>
       </CardContent>
     </Card>
   );

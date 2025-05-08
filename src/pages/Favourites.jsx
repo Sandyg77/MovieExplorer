@@ -1,91 +1,47 @@
-import React from "react";
-import {
-  Box,
-  Typography,
-  Grid,
-  Card,
-  CardMedia,
-  CardContent,
-  IconButton,
-} from "@mui/material";
-import { Delete } from "@mui/icons-material";
-import Layout from "../components/Layout";
-
-// Mock data for favorites (replace with real state or context)
-const mockFavorites = [
-  {
-    id: 1,
-    title: "Inception",
-    poster_path:
-      "https://image.tmdb.org/t/p/w500//qjb5mFiG09h6F0Mk4hKKN2dE9ju.jpg",
-    release_date: "2010-07-16",
-  },
-  {
-    id: 2,
-    title: "Interstellar",
-    poster_path:
-      "https://image.tmdb.org/t/p/w500//gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
-    release_date: "2014-11-07",
-  },
-];
+// src/pages/Favorites.jsx
+import React, { useState } from "react";
+import { Box, Typography, Grid, Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import MovieCard from "../components/MovieCard"; // Import MovieCard component
 
 const Favorites = () => {
-  const [favorites, setFavorites] = React.useState(mockFavorites);
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favorites")) || []
+  );
 
-  const handleRemove = (id) => {
-    setFavorites(favorites.filter((movie) => movie.id !== id));
+  const removeFromFavorites = (movieId) => {
+    const updatedFavorites = favorites.filter((movie) => movie.id !== movieId);
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
   return (
-    <Layout>
-      <Box p={3}>
-        <Typography variant="h4" gutterBottom>
-          Your Favourites
+    <Box sx={{ padding: 2 }}>
+      <Link to="/home">
+        <Button variant="contained" sx={{ marginBottom: 2 }}>
+          Back to Home
+        </Button>
+      </Link>
+      <Typography variant="h4" sx={{ marginBottom: 2 }}>
+        Your Favorite Movies
+      </Typography>
+      {favorites.length > 0 ? (
+        <Grid container spacing={2}>
+          {favorites.map((movie) => (
+            <Grid item xs={12} sm={6} md={4} key={movie.id}>
+              <MovieCard
+                movie={movie}
+                onClick={() => removeFromFavorites(movie.id)}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      ) : (
+        <Typography variant="h6" color="text.secondary">
+          You have no favorite movies.
         </Typography>
-        {favorites.length === 0 ? (
-          <Typography variant="body1">
-            No favourite movies added yet.
-          </Typography>
-        ) : (
-          <Grid container spacing={2}>
-            {favorites.map((movie) => (
-              <Grid item key={movie.id} xs={12} sm={6} md={4} lg={3}>
-                <Card>
-                  <CardMedia
-                    component="img"
-                    height="300"
-                    image={movie.poster_path}
-                    alt={movie.title}
-                  />
-                  <CardContent
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Box>
-                      <Typography variant="subtitle1" noWrap>
-                        {movie.title}
-                      </Typography>
-                      <Typography variant="caption" color="textSecondary">
-                        {movie.release_date}
-                      </Typography>
-                    </Box>
-                    <IconButton
-                      onClick={() => handleRemove(movie.id)}
-                      color="error"
-                    >
-                      <Delete />
-                    </IconButton>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        )}
-      </Box>
-    </Layout>
+      )}
+    </Box>
   );
 };
 
