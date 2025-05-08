@@ -13,7 +13,9 @@ import Layout from "../components/Layout";
 import Banner from "../components/Banner";
 import MovieCard from "../components/MovieCard";
 import Footer from "../components/Footer";
-const API_KEY = "YOUR_TMDB_API_KEY"; // Replace with TMDb key
+
+// Use environment variable for the API key
+const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
