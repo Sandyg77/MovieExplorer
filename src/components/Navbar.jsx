@@ -9,11 +9,13 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { Menu, Brightness4, Brightness7, Favorite } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
 const Navbar = ({ isDarkMode, toggleTheme }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const navigate = useNavigate();
 
   return (
     <AppBar
@@ -40,7 +42,6 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           py: isMobile ? 1 : 0,
         }}
       >
-        {/* Left: Logo & Menu */}
         <Box
           display="flex"
           alignItems="center"
@@ -63,7 +64,6 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           </Typography>
         </Box>
 
-        {/* Right: Search + Favorite + Theme */}
         <Box
           display="flex"
           flexDirection={isMobile ? "column" : "row"}
@@ -77,7 +77,11 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
             <SearchBar />
           </Box>
           <Box display="flex" gap={1}>
-            <IconButton color="inherit" aria-label="favourites">
+            <IconButton
+              color="inherit"
+              aria-label="favourites"
+              onClick={() => navigate("/favorites")}
+            >
               <Favorite />
             </IconButton>
             <IconButton color="inherit" onClick={toggleTheme}>
