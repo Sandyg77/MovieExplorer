@@ -36,7 +36,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
             <img
               src="/logo.png"
               alt="Film Cube Logo"
-              style={{ maxWidth: 40, height: "auto" }}
+              style={{ maxWidth: 65, height: "auto" }}
             />
             <Typography variant="h6" component="div" noWrap>
               Film Cube
