@@ -7,26 +7,35 @@ import {
   Typography,
   Box,
   Rating,
-  IconButton,
 } from "@mui/material";
-import { Favorite } from "@mui/icons-material"; // Import Favorite icon
+import { useNavigate } from "react-router-dom";
 
-const MovieCard = ({ movie, onClick }) => {
-  const addToFavorites = (movie) => {
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    if (!favorites.some((fav) => fav.id === movie.id)) {
-      favorites.push(movie);
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-    }
-  };
+const MovieCard = ({ movie }) => {
+  const navigate = useNavigate();
 
   return (
-    <Card onClick={onClick} sx={{ cursor: "pointer", height: "100%" }}>
+    <Card
+      onClick={() => navigate(`/movie/${movie.id}`)}
+      sx={{
+        cursor: "pointer",
+        width: 220,
+        height: 410,
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        transition: "transform 0.3s ease",
+        "&:hover": {
+          transform: "scale(1.05)",
+          boxShadow: 6,
+        },
+      }}
+    >
       <CardMedia
         component="img"
         image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt={movie.title}
-        sx={{ height: 300 }}
+        sx={{ height: 300, objectFit: "cover" }}
       />
       <CardContent>
         <Typography variant="h6" noWrap gutterBottom>
@@ -44,12 +53,6 @@ const MovieCard = ({ movie, onClick }) => {
             size="small"
           />
         </Box>
-        <IconButton
-          sx={{ position: "absolute", top: 10, right: 10 }}
-          onClick={() => addToFavorites(movie)}
-        >
-          <Favorite color="primary" />
-        </IconButton>
       </CardContent>
     </Card>
   );
