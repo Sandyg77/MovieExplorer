@@ -192,11 +192,24 @@ const LoginForm = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Person sx={{ color: "#00e5ff", fontSize: 20 }} />
+                      <Person color="primary" />
                     </InputAdornment>
                   ),
                 }}
-                sx={{ mb: 2 }}
+                sx={{
+                  mb: 2,
+                  input: {
+                    color: theme.palette.text.primary,
+                  },
+                  label: {
+                    color: theme.palette.text.primary,
+                  },
+                  ".MuiOutlinedInput-root": {
+                    backgroundColor:
+                      theme.palette.mode === "dark" ? "#1e1e1e" : "#fff",
+                    borderRadius: "6px",
+                  },
+                }}
               />
 
               <TextField
@@ -210,7 +223,7 @@ const LoginForm = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Lock sx={{ color: "#00e5ff", fontSize: 20 }} />
+                      <Lock color="primary" />
                     </InputAdornment>
                   ),
                   endAdornment: (
@@ -219,15 +232,32 @@ const LoginForm = () => {
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? (
-                          <VisibilityOff sx={{ fontSize: 20 }} />
+                          <VisibilityOff
+                            sx={{ color: theme.palette.text.primary }}
+                          />
                         ) : (
-                          <Visibility sx={{ fontSize: 20 }} />
+                          <Visibility
+                            sx={{ color: theme.palette.text.primary }}
+                          />
                         )}
                       </IconButton>
                     </InputAdornment>
                   ),
                 }}
-                sx={{ mb: 3 }}
+                sx={{
+                  mb: 3,
+                  input: {
+                    color: theme.palette.text.primary,
+                  },
+                  label: {
+                    color: theme.palette.text.primary,
+                  },
+                  ".MuiOutlinedInput-root": {
+                    backgroundColor:
+                      theme.palette.mode === "dark" ? "#1e1e1e" : "#fff",
+                    borderRadius: "6px",
+                  },
+                }}
               />
 
               <Button
