@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMovies, addMovies } from "../redux/MovieSlice.js";
 
 // Use environment variable for the API key
-const API_KEY = "8bb13066322ba409c70487becd37cc7c";
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 const Home = () => {
   const dispatch = useDispatch();

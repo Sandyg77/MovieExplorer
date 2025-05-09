@@ -11,7 +11,7 @@ import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import MovieCard from "./MovieCard";
 import axios from "axios";
 
-const API_KEY = "8bb13066322ba409c70487becd37cc7c";
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const TRENDING_URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
 
 const Trending = () => {

@@ -185,7 +185,7 @@ const MovieDetails = () => {
   const [darkMode, setDarkMode] = useState(true); // Default to dark mode
   const [isLoaded, setIsLoaded] = useState(false);
   const isMobile = useMediaQuery("(max-width:600px)");
-  const API_KEY = "8bb13066322ba409c70487becd37cc7c";
+  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
   // Apply theme based on mode
   const appliedTheme = darkMode ? darkTheme : lightTheme;

@@ -7,7 +7,7 @@ import { useTheme } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { setMovies } from "../redux/MovieSlice.js";
 
-const API_KEY = "8bb13066322ba409c70487becd37cc7c";
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
