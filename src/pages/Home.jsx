@@ -14,11 +14,15 @@ import Banner from "../components/Banner";
 import MovieCard from "../components/MovieCard";
 import Footer from "../components/Footer";
 
+import { useDispatch, useSelector } from "react-redux";
+import { setMovies, addMovies } from "../redux/MovieSlice.js";
+
 // Use environment variable for the API key
-const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
+const API_KEY = "8bb13066322ba409c70487becd37cc7c";
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
+  const dispatch = useDispatch();
+  const selectedMovies = useSelector((state) => state.movies.movies);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -32,12 +36,17 @@ const Home = () => {
       );
 
       if (res.data.results.length > 0) {
-        setMovies((prev) => [...prev, ...res.data.results]);
-        setHasMore(res.data.page < res.data.total_pages);
+        // setHasMore();
+        if (page > 1) {
+          dispatch(addMovies(res.data.results));
+        } else {
+          dispatch(setMovies(res.data.results));
+        }
       } else {
         setHasMore(false);
       }
     } catch (err) {
+      console.error(err);
       setError("Failed to load movies. Please try again.");
     }
     setLoading(false);
@@ -65,13 +74,13 @@ const Home = () => {
         {error && <Alert severity="error">{error}</Alert>}
 
         <Grid container spacing={3}>
-          {movies.map((movie) => (
+          {selectedMovies.map((movie) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
               <MovieCard movie={movie} onClick={() => {}} />
             </Grid>
           ))}
         </Grid>
-
+        {hasMore}
         <Box textAlign="center" mt={4}>
           {loading ? (
             <CircularProgress />
