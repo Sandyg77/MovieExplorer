@@ -70,6 +70,12 @@ const Banner = () => {
           size="large"
           color="secondary"
           startIcon={<ExploreIcon />}
+          onClick={() => {
+            const allMoviesSection = document.getElementById("all-movies");
+            if (allMoviesSection) {
+              allMoviesSection.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
           sx={{
             borderRadius: 28,
             px: 4,
