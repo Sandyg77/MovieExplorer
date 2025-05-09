@@ -8,6 +8,7 @@ import {
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import MovieDetails from "./pages/MovieDetails";
+import Favorites from "./pages/Favourites";
 function App() {
   const isLoggedIn = localStorage.getItem("filmCubeUser");
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
     </Router>
   );
