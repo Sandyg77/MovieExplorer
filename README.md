@@ -1,12 +1,66 @@
-# React + Vite
+### **Film-Cube README (`README.md`)**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Movie Explorer
 
-Currently, two official plugins are available:
+Film Cube is a responsive React application that allows users to explore trending and popular movies using data from the TMDb API. It provides an engaging UI where users can search for movies, view detailed information, and save favorites locally.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Display trending movies of the week.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Search for any movie by title.
+
+- View detailed information about selected movies, including trailers, cast, genres, ratings, and release year.
+
+- Add and manage favorite movies using local storage.
+
+- Toggle between light and dark themes.
+
+- Fully responsive design for mobile, tablet, and desktop.
+
+- Infinite scroll or "Load More" for extended browsing.
+
+## Prerequisites
+
+- Node.js (version 14 or later)
+- npm
+
+## Installation
+
+1. Clone the repository to your local machine:
+
+   ```bash
+   git clone https://github.com/Sandyg77/MovieExplorer.git
+
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd film-cube
+
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+
+   ```
+
+4. Start the development server::
+   ```bash
+   npm run dev
+   ```
+
+## Technologies Used
+
+- React – Frontend library
+
+- Material UI (MUI) – UI Components and theming
+
+- React Router – Page routing
+
+- TMDb API – Movie data source
+
+- LocalStorage – Persist user favorites
