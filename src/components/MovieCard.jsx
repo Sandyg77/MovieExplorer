@@ -67,7 +67,11 @@ const MovieCard = ({ movie, onFavoriteChange }) => {
     >
       <CardMedia
         component="img"
-        image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+        image={
+          movie.poster_path != null
+            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+            : "./../../public/placeholder.png"
+        }
         alt={movie.title}
         sx={{
           height: { xs: 220, sm: 250, md: 300 },
