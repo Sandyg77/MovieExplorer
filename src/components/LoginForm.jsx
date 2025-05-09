@@ -198,16 +198,10 @@ const LoginForm = () => {
                 }}
                 sx={{
                   mb: 2,
-                  input: {
-                    color: theme.palette.text.primary,
-                  },
-                  label: {
-                    color: theme.palette.text.primary,
-                  },
-                  ".MuiOutlinedInput-root": {
-                    backgroundColor:
-                      theme.palette.mode === "dark" ? "#1e1e1e" : "#fff",
-                    borderRadius: "6px",
+                  "& input:-webkit-autofill": {
+                    WebkitBoxShadow: `0 0 0 1000px ${theme.palette.background.paper} inset`,
+                    WebkitTextFillColor: theme.palette.text.primary,
+                    caretColor: theme.palette.text.primary,
                   },
                 }}
               />
@@ -231,31 +225,17 @@ const LoginForm = () => {
                       <IconButton
                         onClick={() => setShowPassword(!showPassword)}
                       >
-                        {showPassword ? (
-                          <VisibilityOff
-                            sx={{ color: theme.palette.text.primary }}
-                          />
-                        ) : (
-                          <Visibility
-                            sx={{ color: theme.palette.text.primary }}
-                          />
-                        )}
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
                       </IconButton>
                     </InputAdornment>
                   ),
                 }}
                 sx={{
-                  mb: 3,
-                  input: {
-                    color: theme.palette.text.primary,
-                  },
-                  label: {
-                    color: theme.palette.text.primary,
-                  },
-                  ".MuiOutlinedInput-root": {
-                    backgroundColor:
-                      theme.palette.mode === "dark" ? "#1e1e1e" : "#fff",
-                    borderRadius: "6px",
+                  mb: 2,
+                  "& input:-webkit-autofill": {
+                    WebkitBoxShadow: `0 0 0 1000px ${theme.palette.background.paper} inset`,
+                    WebkitTextFillColor: theme.palette.text.primary,
+                    caretColor: theme.palette.text.primary,
                   },
                 }}
               />

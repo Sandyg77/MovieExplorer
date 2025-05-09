@@ -1,0 +1,69 @@
+/* Override MUI TextField input backgrounds */
+.MuiOutlinedInput-root {
+  background-color: transparent !important;
+}
+
+.MuiOutlinedInput-input {
+  background-color: transparent !important;
+}
+
+.MuiFilledInput-root {
+  background-color: transparent !important;
+}
+
+.MuiFilledInput-input {
+  background-color: transparent !important;
+}
+
+.MuiInputBase-root {
+  background-color: transparent !important;
+}
+
+.MuiInputBase-input {
+  background-color: transparent !important;
+}
+
+/* Make sure hover and focus states also maintain transparency */
+.MuiOutlinedInput-root:hover {
+  background-color: transparent !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused {
+  background-color: transparent !important;
+}
+
+.MuiFilledInput-root:hover {
+  background-color: transparent !important;
+}
+
+.MuiFilledInput-root.Mui-focused {
+  background-color: transparent !important;
+}
+
+/* Target any MUI input fields directly */
+.MuiTextField-root input {
+  background-color: transparent !important;
+}
+
+/* Override any input field that might have a hard-coded background */
+input {
+  background-color: transparent !important;
+}
+
+/* Additional class for direct targeting specific inputs */
+.transparent-input .MuiOutlinedInput-root {
+  background-color: transparent !important;
+}
+
+/* Force override with specificity and !important */
+div.MuiOutlinedInput-root {
+  background-color: transparent !important;
+}
+
+/* Try even more aggressive overrides for stubborn elements */
+.MuiInputBase-root.MuiOutlinedInput-root,
+.MuiInputBase-root.MuiOutlinedInput-root:hover,
+.MuiInputBase-root.MuiOutlinedInput-root.Mui-focused {
+  background: none !important;
+  background-color: transparent !important;
+}
