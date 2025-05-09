@@ -13,7 +13,7 @@ import Layout from "../components/Layout";
 import Banner from "../components/Banner";
 import MovieCard from "../components/MovieCard";
 import Footer from "../components/Footer";
-
+import Trending from "../components/Trending";
 import { useDispatch, useSelector } from "react-redux";
 import { setMovies, addMovies } from "../redux/MovieSlice.js";
 
@@ -66,9 +66,37 @@ const Home = () => {
     <Layout>
       <Banner />
 
+      {/* Trending Movies Section */}
       <Container maxWidth="xl" sx={{ mt: 4 }}>
-        <Typography variant="h4" mb={3}>
+        <Typography
+          variant="h4"
+          mb={3}
+          sx={{
+            background: "#057295",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontWeight: "bold",
+            textShadow: "1px 1px 3px rgba(0,0,0,0.1)",
+          }}
+        >
           Trending Movies
+        </Typography>
+        <Trending />
+      </Container>
+
+      <Container maxWidth="xl" sx={{ mt: 4 }} id="all-movies">
+        <Typography
+          variant="h4"
+          mb={3}
+          sx={{
+            background: "#057295",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontWeight: "bold",
+            textShadow: "1px 1px 3px rgba(0,0,0,0.1)",
+          }}
+        >
+          All Movies
         </Typography>
 
         {error && <Alert severity="error">{error}</Alert>}
